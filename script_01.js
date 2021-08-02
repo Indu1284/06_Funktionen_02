@@ -8,3 +8,11 @@
 4. Ausgabe in Konsole 
 */
 
+
+
+// Modul: Konsolenausgabe |  Test:
+ausgabe("Hallo Welt!")
+ausgabe(20);
+function ausgabe(outputStr) {
+    console.log(outputStr);
+}
