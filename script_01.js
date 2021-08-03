@@ -8,27 +8,62 @@
 4. Ausgabe in Konsole : check!
 */
 
-// startApp();
+startApp();
 
 function startApp() {
-  ausgabe(rechner(getZahl1(),getOp(),getZahl2())); 
+    ausgabe(rechner(getZahl("1"),getOp(),getZahl("2"))); 
 }
 
-function getZahl1() {
-   return 10; 
+// Modul: Zahl eingeben | Test:
+// ausgabe(getZahl("1"));
+function getZahl(numStr) {
+
+    const displayStr = "Bitte Zahl " + numStr + " eingeben."
+    let ziffer =  prompt(displayStr);
+    let zahl = parseInt(ziffer);
+
+    while (isNaN(zahl) && (ziffer !== null)) {
+        ziffer =  prompt(displayStr);
+        zahl = parseInt(ziffer); 
+    }
+
+    return zahl; 
 }
-
-function getZahl2() {
-    return 4; 
- }
-
  // Modul: Operand eingeben | Test:
- ausgabe(getOp());
+ //ausgabe(getOp());
  function getOp() {
-     return "-";
- }
- 
+    let op = prompt("Bitte + | - | * | / eingeben.");
 
+     // wenn op NICHT gültig ist UND user NICHT auf Abbrechen geklickt hat ...
+     while (!isOpValid(op) && (op !== null)) { 
+        op = prompt("Bitte + | - | * | / eingeben."); // Nochmal ...
+ }
+ return op;
+}
+
+
+// Modul: Operand überprüfen | Test:
+//  ausgabe(isOpValid("+"));
+//  ausgabe(isOpValid("-"));
+//  ausgabe(isOpValid("*"));
+//  ausgabe(isOpValid("/"));
+//  ausgabe(isOpValid(""));
+//  ausgabe(isOpValid("#!?"));
+function isOpValid(op) {
+
+    // 1. Variante -- switch()
+    // switch (op) {
+    //     case "+":
+    //     case "-":
+    //     case "*":
+    //     case "/":
+    //         return true;    
+    //     default:
+    //         return false;
+    // }
+
+    return op == "+" || op == "-" || op == "*" || op == "/";
+ }
 // Modul: Rechenart auswählen | Tests:
 // ausgabe(rechner(10,"+",4));
 // ausgabe(rechner(10,"-",4));
@@ -36,6 +71,7 @@ function getZahl2() {
 // ausgabe(rechner(10,"/",4));
 // ausgabe(rechner(10,"/",0));
 // ausgabe(rechner(10,"#!?",0));
+
 function rechner(a,op,b) {  
     // a,b --> Operanden / Operatoren: +,- ..
     switch (op) {
@@ -51,7 +87,6 @@ function rechner(a,op,b) {
             return "Irgendwas ging schief!";
     }
 }
-
 // Modul: Division a / b |  Test:
 // ausgabe(dividieren(4,2));
 // ausgabe(dividieren(4,-2));
